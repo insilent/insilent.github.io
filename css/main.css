@@ -941,7 +941,7 @@ pre .javascript .function {
   padding: 0 20px;
   font-size: 14px;
   color: #555;
-  background: #fff;
+  background: rgba(255,255,255,0.5);
   border: 2px solid #555;
   text-decoration: none;
   border-radius: 2px;
@@ -954,7 +954,7 @@ pre .javascript .function {
 .btn:hover {
   border-color: #222;
   color: #fff;
-  background: #222;
+  background: #591e7c;
 }
 .btn +.btn {
   margin: 0 0 8px 8px;
@@ -1659,6 +1659,16 @@ pre .javascript .function {
 .rtl.post-title {
   font-family: UKIJ Ekran;
 }
+.post-body p a {
+  color: #0593d3;
+  border-bottom: none;
+  border-bottom: 1px solid #0593d3;
+}
+.post-body p a:hover {
+  color: #fc6423;
+  border-bottom: none;
+  border-bottom: 1px solid #fc6423;
+}
 .sidebar {
   position: fixed;
   right: 0;
@@ -1823,7 +1833,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ba1cff;
+  background: #6fb4c3;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2607,7 +2617,7 @@ pre .javascript .function {
   overflow: hidden;
   padding: 0;
   width: 240px;
-  background: #fff;
+  background: rgba(255,255,255,0.6);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   border-radius: initial;
 }
@@ -2848,7 +2858,7 @@ pre .javascript .function {
   box-sizing: border-box;
   width: 240px;
   color: #555;
-  background: #fff;
+  background: rgba(255,255,255,0.6);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   border-radius: initial;
   opacity: 0;
@@ -2984,7 +2994,7 @@ pre .javascript .function {
 }
 .post-block {
   padding: 40px;
-  background: #fff;
+  background: rgba(255,255,255,0.5);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   border-radius: initial;
 }
@@ -3017,7 +3027,7 @@ pre .javascript .function {
 .pagination {
   margin: 12px 0 0;
   border-top: initial;
-  background: #fff;
+  background: rgba(255,255,255,0.6);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   border-radius: initial;
   padding: 10px 0 10px;
@@ -3126,4 +3136,15 @@ pre .javascript .function {
 }
 :active {
   cursor: url("https://coding.net/u/nowinsilent/p/111111/git/raw/master/Arrow.ico"), auto !important;
+}
+.site-meta {
+  padding: 20px 0;
+  color: #fff;
+  background: #591e7c;
+}
+.site-author-name {
+  margin: 0;
+  text-align: center;
+  color: #591e7c;
+  font-weight: 600;
 }
