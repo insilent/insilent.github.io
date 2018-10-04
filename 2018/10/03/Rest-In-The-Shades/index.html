@@ -7,7 +7,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
@@ -112,9 +112,11 @@
 <meta property="og:url" content="http://yoursite.com/2018/10/03/Rest-In-The-Shades/index.html">
 <meta property="og:site_name" content="insilent">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-03T09:24:54.145Z">
+<meta property="og:image" content="http://yoursite.com/images/fhssuhfu.jpg">
+<meta property="og:updated_time" content="2018-10-04T19:37:54.953Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rest In The Shades">
+<meta name="twitter:image" content="http://yoursite.com/images/fhssuhfu.jpg">
 
 
 
@@ -150,7 +152,7 @@
 
 
 
-  <title>Rest In The Shades | insilent</title>
+  <title>Rest In The Shades | insilent</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -169,7 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -344,14 +346,13 @@
       
 
       
-        <p><img src="" alt=""></p>
+        <p><img src="/images/fhssuhfu.jpg" alt=""></p>
 <a id="more"></a>
 <h1 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h1><p>&emsp;&emsp;<br>平面上有一个点光源, 以每秒一个单位的速度从 $(x_0, y)$ 沿直线走到 $(x_1, y)$, $y &lt; 0$,<br>$x$ 轴上有 $n$ 条线段会遮挡光线, $x$ 轴上方有 $q$ 个点, 你需要计算出每个点能够被光线直射的总时间.</p>
-<p>\vspace{2ex}<br>&emsp;&emsp;<br>$n, q \le 10^5$</p>
+<p>&emsp;&emsp;<br>$n, q \le 10^5$</p>
 <h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>此题看似复杂，实际上也有迹可循<br>&emsp;&emsp;<br>首先每一个点被照射的时间就是从这个点投影在光源的轨迹上的总长度（即将被照射的的点看作点光源）,<br>由于光源的轨迹与 <strong>$x$</strong> 轴是平行的, 所以在轨迹上的长度和在 <strong>$x$</strong> 轴上的长度比值是定值,<br>只要计算在 <strong>$x$</strong> 轴上投影的距离即可.</p>
-<p>. . .</p>
-<p>\vspace{2ex}<br>&emsp;&emsp;<br>先求出到光源的轨迹两端点的连线与 $x$ 轴的交点然后二分左右端点即可, 两端的多出部分需要特殊考虑一下.</p>
-
+<p>&emsp;&emsp;<br>先求出到光源的轨迹两端点的连线与 $x$ 轴的交点然后二分左右端点即可, 两端的多出部分需要特殊考虑一下.</p>
+<h1 id="标程"><a href="#标程" class="headerlink" title="标程"></a>标程</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N (2e5+5)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> eps (1e-9)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> sy,a,b,sum[N],l[N],r[N];</span><br><span class="line"><span class="keyword">int</span> n,q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;q); </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=q;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">double</span> x,y;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;x,&amp;y);</span><br><span class="line">        <span class="keyword">double</span> sfb=y/(y-sy);</span><br><span class="line">        <span class="keyword">double</span> pax=a-x,pbx=b-x;</span><br><span class="line">        pax*=sfb; pbx*=sfb;</span><br><span class="line">        pax+=x; pbx+=x;</span><br><span class="line">        <span class="keyword">if</span> (pbx&lt;=l[<span class="number">1</span>])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"0.00000000\n"</span>);</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (pax&gt;=r[n])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"0.00000000\n"</span>);</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">double</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> L=<span class="number">1</span>,R=n; </span><br><span class="line">        <span class="keyword">while</span> (L&lt;R)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> mid=(L+R+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (l[mid]&lt;=pax) L=mid;</span><br><span class="line">                <span class="keyword">else</span> R=mid<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ans-=sum[L]-max(<span class="number">0.0</span>,r[L]-pax);</span><br><span class="line">        L=<span class="number">1</span>,R=n;</span><br><span class="line">        <span class="keyword">while</span> (L&lt;R)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> mid=(L+R)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (r[mid]&gt;=pbx) R=mid;</span><br><span class="line">                <span class="keyword">else</span> L=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ans+=sum[R];</span><br><span class="line">        ans-=min(r[L]-pbx,r[L]-l[L]);</span><br><span class="line">        ans=ans*(b-a)/(pbx-pax); </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%.7lf\n"</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lf%lf%lf"</span>,&amp;sy,&amp;a,&amp;b);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n); n++;</span><br><span class="line">    l[<span class="number">1</span>]=r[<span class="number">1</span>]=<span class="number">0</span>; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;l[i],&amp;r[i]);</span><br><span class="line">        sum[i]=sum[i<span class="number">-1</span>]+(r[i]-l[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    l[++n]=r[n]=INF;</span><br><span class="line">    sum[n]=sum[n<span class="number">-1</span>];</span><br><span class="line">    solve();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -474,7 +475,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -487,7 +488,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -520,7 +521,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题面"><span class="nav-number">1.</span> <span class="nav-text">题面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题解"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题面"><span class="nav-number">1.</span> <span class="nav-text">题面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题解"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标程"><span class="nav-number">3.</span> <span class="nav-text">标程</span></a></li></ol></div>
             
 
           </div>
@@ -559,7 +560,7 @@
 
   <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.1k字</span>
+  <span class="post-count">博客全站共6.8k字</span>
 </div>
 
         
@@ -752,7 +753,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdn.staticfile.org/MathJax/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
@@ -760,7 +761,24 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end --></body>
 
 
 

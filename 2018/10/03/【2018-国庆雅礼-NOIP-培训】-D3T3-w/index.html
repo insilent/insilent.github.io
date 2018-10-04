@@ -7,7 +7,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="insilent, NexT" />
+  <meta name="keywords" content="图论,2018国庆雅礼,树形dp," />
 
 
 
@@ -106,17 +106,17 @@
 
 
 
-<meta name="description" content="I will follow you until the end">
+<meta name="keywords" content="图论,2018国庆雅礼,树形dp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【2018-国庆雅礼-NOIP-培训】-D3T3- w">
 <meta property="og:url" content="http://yoursite.com/2018/10/03/【2018-国庆雅礼-NOIP-培训】-D3T3-w/index.html">
 <meta property="og:site_name" content="insilent">
-<meta property="og:description" content="I will follow you until the end">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-03T07:34:44.735Z">
+<meta property="og:image" content="http://yoursite.com/images/9f360db2501ea1d92396dcd6812023e286c63eac.jpg">
+<meta property="og:updated_time" content="2018-10-04T20:30:15.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【2018-国庆雅礼-NOIP-培训】-D3T3- w">
-<meta name="twitter:description" content="I will follow you until the end">
+<meta name="twitter:image" content="http://yoursite.com/images/9f360db2501ea1d92396dcd6812023e286c63eac.jpg">
 
 
 
@@ -152,7 +152,7 @@
 
 
 
-  <title>【2018-国庆雅礼-NOIP-培训】-D3T3- w | insilent</title>
+  <title>【2018-国庆雅礼-NOIP-培训】-D3T3- w | insilent</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -171,7 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -346,7 +346,11 @@
       
 
       
-        
+        <p><img src="/images/9f360db2501ea1d92396dcd6812023e286c63eac.jpg" alt=""></p>
+<a id="more"></a>
+<h1 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h1><p>我们考虑最后翻转的边集 $S$ ，易知最小操作数为 ${V,S}$ 中奇数度数的点的一半，最小操作总长为 $|S|$。 </p>
+<p>那么我们可以使用树形 dp ，用 $dp[i][0/1]$ 记录以 $i$ 为根的子树内，$i$ 与父亲之间的边是否翻转，最少的奇度 数点数、此时最小总长度。</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 100010</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; inf=make_pair(<span class="number">1e9</span>,<span class="number">1e9</span>);</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; g[maxn];</span><br><span class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; dp[maxn][<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; <span class="keyword">operator</span>+ (pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; a,pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; b)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> make_pair(a.first+b.first,a.second+b.second);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> pos,<span class="keyword">int</span> fa,<span class="keyword">int</span> type)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; tmp0(<span class="number">0</span>,<span class="number">0</span>),tmp1(inf);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,v;i&lt;g[pos].size();++i)</span><br><span class="line">		<span class="keyword">if</span>((v=g[pos][i].first)!=fa)</span><br><span class="line">		&#123;</span><br><span class="line">			dfs(v,pos,g[pos][i].second);</span><br><span class="line">			pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; nxt0,nxt1;</span><br><span class="line">			nxt0=min(tmp0+dp[v][<span class="number">0</span>],tmp1+dp[v][<span class="number">1</span>]);</span><br><span class="line">			nxt1=min(tmp1+dp[v][<span class="number">0</span>],tmp0+dp[v][<span class="number">1</span>]);</span><br><span class="line">			tmp0=nxt0;tmp1=nxt1;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">if</span>(type==<span class="number">0</span>||type==<span class="number">2</span>)</span><br><span class="line">		dp[pos][<span class="number">0</span>]=min(tmp0,make_pair(tmp1.first+<span class="number">1</span>,tmp1.second));</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		dp[pos][<span class="number">0</span>]=inf;</span><br><span class="line">	<span class="keyword">if</span>(type==<span class="number">1</span>||type==<span class="number">2</span>)</span><br><span class="line">		dp[pos][<span class="number">1</span>]=min(make_pair(tmp0.first+<span class="number">1</span>,tmp0.second+<span class="number">1</span>),make_pair(tmp1.first,tmp1.second+<span class="number">1</span>));</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		dp[pos][<span class="number">1</span>]=inf;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	freopen(<span class="string">"w.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"w.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,a,b,c,d;i&lt;n;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;a,&amp;b,&amp;c,&amp;d);</span><br><span class="line">		<span class="keyword">if</span>(d!=<span class="number">2</span>)</span><br><span class="line">			d=(c!=d);</span><br><span class="line">		g[a].push_back(make_pair(b,d));</span><br><span class="line">		g[b].push_back(make_pair(a,d));</span><br><span class="line">	&#125;</span><br><span class="line">	dfs(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,dp[<span class="number">1</span>][<span class="number">0</span>].first/<span class="number">2</span>,dp[<span class="number">1</span>][<span class="number">0</span>].second);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -360,6 +364,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/图论/" rel="tag"><i class="fa fa-tag"></i> 图论</a>
+          
+            <a href="/tags/2018国庆雅礼/" rel="tag"><i class="fa fa-tag"></i> 2018国庆雅礼</a>
+          
+            <a href="/tags/树形dp/" rel="tag"><i class="fa fa-tag"></i> 树形dp</a>
+          
+        </div>
       
 
       
@@ -379,6 +393,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/04/bfs序/" rel="prev" title="bfs序">
+                bfs序 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -430,8 +448,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -450,7 +477,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -463,7 +490,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -486,6 +513,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题解："><span class="nav-number">1.</span> <span class="nav-text">题解：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码："><span class="nav-number">2.</span> <span class="nav-text">代码：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -519,7 +562,7 @@
 
   <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.1k字</span>
+  <span class="post-count">博客全站共6.8k字</span>
 </div>
 
         
@@ -694,13 +737,50 @@
 
   
   
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.staticfile.org/MathJax/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
 
 
   
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end --></body>
 
 
 

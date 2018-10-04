@@ -7,7 +7,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
@@ -152,7 +152,7 @@
 
 
 
-  <title>【2018 国庆雅礼 NOIP 培训】D1T2 折射（refract） | insilent</title>
+  <title>【2018 国庆雅礼 NOIP 培训】D1T2 折射（refract） | insilent</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -171,7 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -352,8 +352,8 @@
 <p>首先，若我们将所有点按照 <strong>y<sub>i</sub></strong> 的顺序转移, 有上界和下界两个限制, 难以优化。</p>
 <p>容易想到按照 <strong>x<sub>i</sub></strong> 排序转移, 并记录 <strong>f<sub>i,0/1</sub></strong> 表示以第 <strong>i</strong> 个点为顶端接下来向 左或向右的折线方案数。</p>
 <p>从左到右加点, 考虑前 <strong>i</strong> 个点构成的包含 <strong>i</strong> 点的折线。由于新点横坐标最大, 所以只可能在折线的第一位或第二位: </p>
-<p><strong>1. ∀<sub>y<sub>j</sub></sub>  &lt; y<sub>i</sub>,f<sub>i,0</sub> ← f<sub>j,1</sub></strong></p>
-<p><strong>2. ∀<sub>y<sub>j</sub></sub> &gt; y<sub>i</sub>,f<sub>j,1</sub> ← f<sub>k,0</sub> | x<sub>k</sub> &gt; x<sub>j</sub> and y<sub>k</sub> &lt; y<sub>i</sub></strong></p>
+<p><strong>1. ∀<sub>y<sub>j</sub>&lt;/sub&gt;  &lt; y<sub>i</sub>,f<sub>i,0</sub> ← f<sub>j,1</sub></sub></strong></p>
+<p><strong>2. ∀<sub>y<sub>j</sub>&lt;/sub&gt; &gt; y<sub>i</sub>,f<sub>j,1</sub> ← f<sub>k,0</sub> | x<sub>k</sub> &gt; x<sub>j</sub> and y<sub>k</sub> &lt; y<sub>i</sub></sub></strong></p>
 <p>第二种情况可以前缀和优化, 复杂度 <strong>O(n<sup>2</sup>)</strong>,详情看代码吧。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">std</span>::pair;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pii;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fst first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> snd second</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> oo = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function">T <span class="title">read</span><span class="params">(T&amp; x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> f = <span class="number">1</span>; x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">for</span>(;!<span class="built_in">isdigit</span>(ch); ch = getchar()) <span class="keyword">if</span>(ch == <span class="string">'-'</span>) f = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(; <span class="built_in">isdigit</span>(ch); ch = getchar()) x = x * <span class="number">10</span> + ch - <span class="number">48</span>;</span><br><span class="line">    <span class="keyword">return</span> x *= f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">6000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mo = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">pii p[N + <span class="number">5</span>];</span><br><span class="line"><span class="keyword">int</span> dp[N + <span class="number">5</span>][<span class="number">2</span>], n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    read(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        read(p[i].fst), read(p[i].snd);</span><br><span class="line">    &#125;</span><br><span class="line">    sort(p + <span class="number">1</span>, p + n + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        dp[i][<span class="number">0</span>] = dp[i][<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i<span class="number">-1</span>; j &gt;= <span class="number">1</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span>(p[j].snd &gt; p[i].snd) &#123;</span><br><span class="line">                (dp[j][<span class="number">1</span>] += dp[i][<span class="number">0</span>]) %= mo;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                (dp[i][<span class="number">0</span>] += dp[j][<span class="number">1</span>]) %= mo;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> ans = mo - n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) ans = ((ans + dp[i][<span class="number">0</span>]) % mo + dp[i][<span class="number">1</span>]) % mo;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -472,7 +472,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -485,7 +485,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -541,7 +541,7 @@
 
   <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.1k字</span>
+  <span class="post-count">博客全站共6.8k字</span>
 </div>
 
         
@@ -722,7 +722,24 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end --></body>
 
 
 
