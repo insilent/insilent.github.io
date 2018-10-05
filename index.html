@@ -474,7 +474,8 @@
       
         
           
-            
+            <h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>如果存在一个 $x_i$ 使得 $x_i−1$ = $x_i$ 或 xi−1 &lt; xi &lt; xi+1 或 xi−1 &gt; xi &gt; xi+1，那么可以删去它。 需要行走的路径可以表示为一正一负的位移，在 l 不超过最小的位移绝对值时，答案是一个 一次函数。 当 l 超过这个值时，意味着当我们到达一个位置时，后继位置直接被接触到，我们需要将 3 个位移合并为 1 个（当然在首尾位置时可能要特判），答案又是一个一次函数。 用 map/链表维护位移序列，priority queue 维护最小位移绝对值，离线询问即可。</p>
+
           
         
       
@@ -593,7 +594,11 @@
       
         
           
-            
+            <h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>看到数据范围后便知道搜索必定爆炸，那就只好用动规了</p>
+<p>$f[i][j][mask]$ 表示从 $i$ 出发，$j$ 结束，是否存在一条表示为 $mask$ 的路径。 但我们发现还是会超时。</p>
+<p>于是我们进行二分（果然二分超级实用的说）————对于每种可能的路径，枚举中间的那个位置判断。时间复杂度为 $O(2^{\frac d 2} ∗n∗(n + m) + 2^d ∗n)$ </p>
+<p><del>来一发bitset可以整体除以 64，可以把 n 开得更大</del></p>
+<h1 id="标程"><a href="#标程" class="headerlink" title="标程"></a>标程</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">90</span>+<span class="number">10</span>,maxmask=<span class="number">1</span>&lt;&lt;<span class="number">20</span>/<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,d,d1,d2,ans;</span><br><span class="line"><span class="built_in">bitset</span>&lt;maxn&gt; g0[maxn],g1[maxn],dp[maxmask],f[maxmask];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"y.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	freopen(<span class="string">"y.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;d);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,u,v,c;i&lt;=m;++i)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;u,&amp;v,&amp;c);</span><br><span class="line">		<span class="keyword">if</span>(c)</span><br><span class="line">			g1[u][v]=g1[v][u]=<span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			g0[u][v]=g0[v][u]=<span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	d2=d/<span class="number">2</span>;d1=d-d2;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> u=n;u;--u)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;maxmask;++i)</span><br><span class="line">			dp[i].reset();</span><br><span class="line">		dp[<span class="number">1</span>][u]=<span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">1</span>;x&lt;<span class="number">1</span>&lt;&lt;d1;++x)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> v=<span class="number">1</span>;v&lt;=n;++v)</span><br><span class="line">				<span class="keyword">if</span>(dp[x][v])&#123;</span><br><span class="line">					dp[x&lt;&lt;<span class="number">1</span>]|=g0[v];</span><br><span class="line">					dp[x&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]|=g1[v];</span><br><span class="line">				&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>;x&lt;<span class="number">1</span>&lt;&lt;d1;++x)</span><br><span class="line">			f[x][u]=dp[<span class="number">1</span>&lt;&lt;d1|x].any();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;d1;++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">1</span>&lt;&lt;d2;++j)</span><br><span class="line">			<span class="keyword">if</span>((dp[<span class="number">1</span>&lt;&lt;d2|j]&amp;f[i]).any())</span><br><span class="line">				++ans;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1558,7 +1563,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1614,7 +1619,7 @@
 
   <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共6.8k字</span>
+  <span class="post-count">博客全站共7.4k字</span>
 </div>
 
         
@@ -1803,15 +1808,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.staticfile.org/MathJax/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdn.staticfile.org/MathJax/MathJax-2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1828,7 +1825,15 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 
 
